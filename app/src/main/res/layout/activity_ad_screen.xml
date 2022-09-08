@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdScreenActivity">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Flakomtivs"
+            android:padding="10dp"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:id="@+id/userName"/>
+        <ImageView
+            android:id="@+id/selectedAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:src="@drawable/av1" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/navContainer"
+        android:layout_below="@id/header"
+        android:layout_marginTop="-2dp"
+        android:layout_marginBottom="2dp">
+
+        <LinearLayout
+            android:id="@+id/contentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="30dp"></LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/navContainer"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:drawableLeft="@drawable/ic_customize"
+            android:id="@+id/customizeBtn"
+            android:layout_weight="0.9"
+            android:textSize="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Customize" />
+
+        <Button
+            android:drawableLeft="@drawable/ic_home"
+            android:id="@+id/homeBtn"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Home" />
+
+        <Button
+            android:drawableLeft="@drawable/ic_settings"
+            android:id="@+id/settingsBtn"
+            android:textSize="12dp"
+            android:layout_weight="0.9"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Settings" />
+    </LinearLayout>
+</RelativeLayout>

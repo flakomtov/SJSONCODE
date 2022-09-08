@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.pg.p_gshar.pti_ps">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".OpenAdApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppUnlocker"
+        tools:targetApi="31">
+        <activity
+            android:name=".pages.About" android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".pages.Contact" android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".pages.Privacy" android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".ParametresActivity" android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".AppOpenerActivity" android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".AdScreenActivity" android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".AvatarActivity" android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity" android:screenOrientation="portrait"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/ADMOB_APP_ID" />
+        <meta-data
+            android:name="applovin.sdk.key"
+            android:value="@string/APPLOVIN_APP_ID" />
+    </application>
+
+</manifest>

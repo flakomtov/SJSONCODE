@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".AvatarActivity">
+
+    <TextView
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="customize your profile"/>
+
+    <ImageView
+        android:layout_marginBottom="10dp"
+        android:id="@+id/selectedAv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/av1"/>
+
+    <EditText
+        android:id="@+id/userNameInput"
+        android:background="@drawable/input"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_height="40dp"
+        android:hint="Your Name"/>
+
+    <EditText
+        android:id="@+id/displayNameInput"
+        android:background="@drawable/input"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:hint="Display Name"/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose your avatar"/>
+
+    <GridLayout
+        android:rowCount="2"
+        android:columnCount="3"
+        android:layout_marginBottom="10dp"
+        android:useDefaultMargins="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/av1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/av1"/>
+        <ImageView
+            android:id="@+id/av2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/av2"/>
+        <ImageView
+            android:id="@+id/av3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/av3"/>
+        <ImageView
+            android:id="@+id/av4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/av4"/>
+        <ImageView
+            android:id="@+id/av5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/av5"/>
+        <ImageView
+            android:id="@+id/av6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/av6"/>
+    </GridLayout>
+
+    <Button
+        android:id="@+id/avatarConfirmBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Started"/>
+
+</LinearLayout>

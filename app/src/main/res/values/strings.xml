@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">P.G sharp Tips</string>
+    <string name="max_screens">6</string>
+    <string name="server_url">https://datingxa.com/</string>
+    <string name="json_file">tahav.json</string>
+    <string name="ADMOB_APP_ID">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="APPLOVIN_APP_ID">zCQyExwqTGxtfWQKOl3JwiWH9bWIx1F7XlU2UCMNhgHIAcCXpoMTq5vSs6scGxXc-TgooV0zgMdgB25mb0s1wI</string>
+
+    <string name="title_activity_ad_screen">Screen</string>
+    <string name="title_home">Home</string>
+    <string name="title_customize">Customize</string>
+    <string name="title_Settings">Settings</string>
+
+    <string name="privacy"></string>
+    <string name="About">Version 1.0</string>
+</resources>
+
