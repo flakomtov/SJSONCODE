@@ -52,6 +52,8 @@ public class AdScreenActivity extends AppCompatActivity implements MaxRewardedAd
     private AdScreen currentAdScreen;
     private MaxRewardedAd rewardedAd;
     private int retryAttempt;
+    private int adsProcessed;
+    private Button nextBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,11 +145,12 @@ public class AdScreenActivity extends AppCompatActivity implements MaxRewardedAd
                     break;
             }
 
-            Button nextBtn = new Button(this);
-            nextBtn.setBackgroundColor(savedColor);
+            nextBtn = new Button(this);
             nextBtn.setTextColor(getResources().getColor(R.color.white));
             nextBtn.setTextSize(20);
             nextBtn.setText("Next");
+            nextBtn.setEnabled(false);
+            nextBtn.setBackgroundColor(getResources().getColor(R.color.lightGray));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -308,12 +311,14 @@ public class AdScreenActivity extends AppCompatActivity implements MaxRewardedAd
                     if (isDestroyed()) {
                         nativeAd.destroy();
                     }
+                    enableNextBtn();
                 })
                 .withAdListener(new AdListener() {
                     @Override
                     public void onAdFailedToLoad(LoadAdError adError) {
                         // Handle the failure by logging, altering the UI, and so on.
                         System.out.println(adError);
+                        enableNextBtn();
                     }
                 })
                 .withNativeAdOptions(new NativeAdOptions.Builder()
@@ -343,14 +348,24 @@ public class AdScreenActivity extends AppCompatActivity implements MaxRewardedAd
                         // The mInterstitialAd reference will be null until
                         // an ad is loaded.
                         mInterstitialAd = interstitialAd;
+                        enableNextBtn();
                     }
 
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         // Handle the error
                         System.out.println(loadAdError);
+                        enableNextBtn();
                     }
                 });
+    }
+
+    private void enableNextBtn() {
+        adsProcessed++;
+        if (adsProcessed > 1) {
+            nextBtn.setEnabled(true);
+            nextBtn.setBackgroundColor(savedColor);
+        }
     }
 
     private void setAvatar(ImageView imageView) {
