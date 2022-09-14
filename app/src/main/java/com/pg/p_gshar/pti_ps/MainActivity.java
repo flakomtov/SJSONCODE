@@ -5,18 +5,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 
 import com.applovin.sdk.AppLovinSdk;
 import com.google.android.gms.ads.MobileAds;
-import com.skydoves.colorpickerview.ActionMode;
-import com.skydoves.colorpickerview.ColorPickerView;
-import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 import com.pg.p_gshar.pti_ps.data.DataManager;
+
+import java.util.Collections;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -32,27 +29,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
-
-        // FirstTime
-         //*   Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-                  //  .getBoolean("isFirstRun", true);
-
-    //        if (!isFirstRun) {
-           //     Intent intent = new Intent(MainActivity.this, AvatarActivity.class);
-            //    startActivity(intent);
-            //    finish();
-
-         //   }
-     //   getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isFirstRun",
-        //        false).apply();
-    // FirstTime//*
 
         MobileAds.initialize(this, initializationStatus -> {});
         AppLovinSdk.getInstance(this).setMediationProvider("max");
         AppLovinSdk.initializeSdk(this, configuration -> {});
         // remove before publishing
-      //  AppLovinSdk.getInstance(this).getSettings().setTestDeviceAdvertisingIds(Collections.singletonList("524639d6-f9ee-4bf6-a391-c0cbf759e361"));
+        AppLovinSdk.getInstance(this).getSettings().setTestDeviceAdvertisingIds(Collections.singletonList("524639d6-f9ee-4bf6-a391-c0cbf759e361"));
 
         dataManager = DataManager.getInstance(this);
         String serverURL = getResources().getString(R.string.server_url);
@@ -60,30 +42,12 @@ public class MainActivity extends AppCompatActivity {
         OkHttpHandler okHttpHandler= new OkHttpHandler();
         okHttpHandler.execute(serverURL + (serverURL.endsWith("/") ? "" : "/") + jsonName);
 
-        TextView textView = findViewById(R.id.colorSelected);
-
-        int savedColor = dataManager.getSharedPrefs().getInt(DataManager.COLOR_PICKER, -434869283);
-
-        ColorPickerView colorPickerView = findViewById(R.id.colorPickerView);
-        colorPickerView.setActionMode(ActionMode.LAST);
-        if  (savedColor != 500) {
-            colorPickerView.setInitialColor(savedColor);
-        }
-
-        colorPickerView.setColorListener((ColorEnvelopeListener) (envelope, fromUser) -> {
-            dataManager.getSharedPrefs().edit()
-                    .putInt(DataManager.COLOR_PICKER, envelope.getColor()).apply();
-            textView.setText("Your choice is: #" + envelope.getHexCode());
-        });
-
-        Button button = findViewById(R.id.colorConfirmBtn);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(this, com.pg.p_gshar.pti_ps.AvatarActivity.class);
-            startActivity(intent);
-        });
+        Intent intent = new Intent(MainActivity.this, AvatarActivity.class);
+        startActivity(intent);
+        finish();
     }
 
-    public class OkHttpHandler extends AsyncTask<String, String, String> {
+    class OkHttpHandler extends AsyncTask<String, String, String> {
         OkHttpClient client = new OkHttpClient();
 
         @Override
@@ -93,9 +57,14 @@ public class MainActivity extends AppCompatActivity {
             Request request = builder.build();
             try {
                 Response response = client.newCall(request).execute();
-                return response.body().string();
+                if (response.isSuccessful() && response.body() != null) {
+                    return response.body().string();
+                } else {
+                    dataManager.setStatus(DataManager.NETWORK_ERROR);
+                }
             }catch (Exception e){
-                e.printStackTrace();
+                System.err.println(e.getMessage());
+                dataManager.setStatus(DataManager.NETWORK_ERROR);
             }
             return null;
         }

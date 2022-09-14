@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -67,6 +68,7 @@ public class AvatarActivity extends AppCompatActivity {
         }
 
         Button button = findViewById(R.id.avatarConfirmBtn);
+        button.setBackgroundColor(getResources().getColor(R.color.masterColor));
         button.setOnClickListener(v -> {
             boolean userNameInputEmpty = TextUtils.isEmpty(userNameInput.getText());
             boolean displayNameInputEmpty = TextUtils.isEmpty(displayNameInput.getText());
@@ -78,9 +80,21 @@ public class AvatarActivity extends AppCompatActivity {
                 dataManager.getSharedPrefs().edit()
                         .putString(DataManager.USER_DISPLAY_NAME,
                                 displayNameInput.getText().toString()).apply();
-                Intent intent = new Intent(this, AdScreenActivity.class);
-                intent.putExtra("currentIndex", 1);
-                startActivity(intent);
+
+                // check if JSON is ready
+                if (dataManager.isReady()) {
+                    Intent intent = new Intent(this, AdScreenActivity.class);
+                    intent.putExtra("currentIndex", 1);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(AvatarActivity.this,
+                            dataManager.isNetworkError() ?
+                                    getResources().getString(R.string.networkError) :
+                                    (dataManager.isJSONError() ?
+                                            getResources().getString(R.string.jsonError) :
+                                            getResources().getString(R.string.unknownError)),
+                            Toast.LENGTH_SHORT).show();
+                }
             }else {
                 if (userNameInputEmpty) {
                     userNameInput.setError("Name is required");

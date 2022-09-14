@@ -10,4 +10,8 @@
     <color name="gray">#DD353535</color>
     <color name="lightGray">#DDEAEAEA</color>
     <color name="red_500">#e14c4c</color>
+
+    <color name="masterColor">#6ABD47</color>
+    <color name="masterColorAccent">#FFFFFFFF</color>
+    <color name="masterTextColor">#FFFFFFFF</color>
 </resources>

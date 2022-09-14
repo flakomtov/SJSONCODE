@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#478BBD"
-    tools:context=".ParametresActivity">
+    tools:context=".SettingsActivity">
 
   <RelativeLayout
         android:layout_marginTop="10dp"
@@ -85,50 +85,6 @@
             android:padding="10dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:onClick="style"
-                android:layout_height="90dp"
-                android:background="@drawable/shape"
-                android:padding="10dp">
-
-                <ImageButton
-                    android:id="@+id/changecolor"
-                    android:onClick="style"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/bitmap" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_marginLeft="12dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Style"
-                        android:textColor="#302F2F"
-                        android:textSize="18dp"
-                        android:layout_gravity="center_vertical"/>
-
-                    <TextView
-                        android:layout_marginLeft="8dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Change The Color Of The App"
-                        android:textColor="#000"
-                        android:textSize="18dp"
-                        android:layout_gravity="center_vertical"/>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_marginTop="15dp"

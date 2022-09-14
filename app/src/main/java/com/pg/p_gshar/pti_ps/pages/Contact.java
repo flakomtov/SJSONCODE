@@ -8,18 +8,24 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.pg.p_gshar.pti_ps.AppOpenerActivity;
 import com.pg.p_gshar.pti_ps.R;
+import com.pg.p_gshar.pti_ps.data.DataManager;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class Contact extends AppCompatActivity {
-    // Email input //// Email input //// Email input //
+    private DataManager dataManager;
     EditText etMail;
     Button bValidate;
-    // Email input //// Email input //// Email input //// Email input //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +34,19 @@ public class Contact extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_contact);
 
-// Email input //// Email input //// Email input //// Email input ////// Email input //// Email input //// Email input //// Email input //
+        dataManager = DataManager.getInstance(this);
+        String displayName = dataManager.getSharedPrefs().getString(DataManager.USER_DISPLAY_NAME, null);
+
+        TextView tv = findViewById(R.id.userName);
+        tv.setText(displayName);
+        ImageView imageView = findViewById(R.id.selectedAvatar);
+        setAvatar(imageView);
+
         etMail = findViewById(R.id.email);
         bValidate = findViewById(R.id.send);
+        bValidate.setBackgroundColor(getResources().getColor(R.color.masterColor));
 
-        bValidate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                emailValidator(etMail);
-            }
-        });
+        bValidate.setOnClickListener(v -> emailValidator(etMail));
     }
     public void emailValidator(EditText etMail) {
 
@@ -50,10 +59,22 @@ public class Contact extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Check your info", Toast.LENGTH_SHORT).show();
         }
-// Email input //// Email input //// Email input //// Email input //// Email input //// Email input //// Email input ////// Email input //// Email input //// Email input //// Email input //
-
     }
     public void back(View view) {
         onBackPressed();
+    }
+
+    private void setAvatar(ImageView imageView) {
+        int avRsc = dataManager.getSharedPrefs().getInt(DataManager.USER_AVATAR, -1);
+        List<Integer> imageViews = Arrays.asList(
+                R.drawable.av1,
+                R.drawable.av2,
+                R.drawable.av3,
+                R.drawable.av4,
+                R.drawable.av5,
+                R.drawable.av6);
+        if (avRsc != -1) {
+            imageView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), imageViews.get(avRsc), null));
+        }
     }
 }

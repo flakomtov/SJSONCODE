@@ -16,35 +16,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppUnlocker"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:ignore="LockedOrientationActivity">
         <activity
-            android:name=".pages.About" android:screenOrientation="portrait"
+            android:name=".pages.About"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".pages.Contact" android:screenOrientation="portrait"
+            android:name=".pages.Contact"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".pages.Privacy" android:screenOrientation="portrait"
+            android:name=".pages.Privacy"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".ParametresActivity" android:screenOrientation="portrait"
+            android:name=".SettingsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".AppOpenerActivity" android:screenOrientation="portrait"
+            android:name=".AppOpenerActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".AdScreenActivity" android:screenOrientation="portrait"
+            android:name=".AdScreenActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".AvatarActivity" android:screenOrientation="portrait"
+            android:name=".AvatarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".MainActivity" android:screenOrientation="portrait"
+            android:name=".MainActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

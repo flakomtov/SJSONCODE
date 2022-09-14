@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".AdScreenActivity">
 
+    <ImageView
+        android:id="@+id/appBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.8"
+        android:scaleType="centerCrop"
+        android:scaleY="1.1"
+        app:srcCompat="@drawable/logo" />
+
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -16,8 +25,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textColor="@color/masterTextColor"
             android:text="Flakomtivs"
             android:padding="10dp"
+            android:paddingStart="20dp"
             android:gravity="center_vertical"
             android:textSize="20sp"
             android:id="@+id/userName"/>
@@ -33,7 +44,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/navContainer"
         android:layout_below="@id/header"
-        android:layout_marginTop="-2dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="2dp">
 
         <LinearLayout
@@ -42,7 +53,25 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="30dp"></LinearLayout>
+            android:padding="20dp"
+            android:clipToPadding="false">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true" />
+
+            <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                android:visibility="gone"
+                android:id="@+id/carousel"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="-20dp"
+                android:layout_marginRight="-20dp"
+                android:layout_height="256dp" />
+
+        </LinearLayout>
     </ScrollView>
 
     <LinearLayout

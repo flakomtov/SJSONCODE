@@ -1,19 +1,29 @@
 package com.pg.p_gshar.pti_ps.data.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdScreen {
     private int screenIndex;
     private String description;
-    private List<AdScreenData> adScreenData;
+    private List<AdScreenData> adScreenData = new ArrayList<>();
+    private String background;
+    private boolean video;
+    private Carousel carousel;
 
     public AdScreen() {
     }
 
-    public AdScreen(int screenIndex, String description, List<AdScreenData> adScreenData) {
-        this.screenIndex = screenIndex;
-        this.description = description;
-        this.adScreenData = adScreenData;
+    public void setVideo(boolean video) {
+        this.video = video;
+    }
+
+    public void setCarousel(Carousel carousel) {
+        this.carousel = carousel;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
     }
 
     public void setDescription(String description) {
@@ -26,6 +36,18 @@ public class AdScreen {
 
     public void setAdScreenData(List<AdScreenData> adScreenData) {
         this.adScreenData = adScreenData;
+    }
+
+    public boolean isVideo() {
+        return video;
+    }
+
+    public Carousel getCarousel() {
+        return carousel;
+    }
+
+    public String getBackground() {
+        return background;
     }
 
     public String getDescription() {

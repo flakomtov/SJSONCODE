@@ -17,16 +17,11 @@ public class AdsData {
     public AdsData() {
     }
 
-    public AdsData(String defaultProvider, String code, String codeLink, String accessLink, List<AdScreen> adScreens, String admobAppOpenAdId, String requestCodeText, boolean verificationPage, String disabledPageDescription) {
-        this.defaultProvider = defaultProvider;
-        this.code = code;
-        this.codeLink = codeLink;
-        this.accessLink = accessLink;
-        this.adScreens = adScreens;
-        this.admobAppOpenAdId = admobAppOpenAdId;
-        this.requestCodeText = requestCodeText;
-        this.verificationPage = verificationPage;
-        this.disabledPageDescription = disabledPageDescription;
+    /**
+     * @return number of screens in JSON file
+     */
+    public int getAdScreensCount() {
+        return adScreens.size();
     }
 
     public boolean isVerificationPage() {

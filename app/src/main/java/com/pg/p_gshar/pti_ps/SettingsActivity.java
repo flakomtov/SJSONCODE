@@ -19,7 +19,7 @@ import com.pg.p_gshar.pti_ps.pages.Privacy;
 import java.util.Arrays;
 import java.util.List;
 
-public class ParametresActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
     private DataManager dataManager;
 
     @Override
@@ -27,7 +27,7 @@ public class ParametresActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_parametres);
+        setContentView(R.layout.activity_settings);
 
         dataManager = DataManager.getInstance(this);
         String displayName = dataManager.getSharedPrefs().getString(DataManager.USER_DISPLAY_NAME, null);
@@ -38,46 +38,42 @@ public class ParametresActivity extends AppCompatActivity {
         setAvatar(imageView);
 
     }
-        private void setAvatar(ImageView imageView) {
-            int avRsc = dataManager.getSharedPrefs().getInt(DataManager.USER_AVATAR, -1);
-            List<Integer> imageViews = Arrays.asList(
-                    R.drawable.av1,
-                    R.drawable.av2,
-                    R.drawable.av3,
-                    R.drawable.av4,
-                    R.drawable.av5,
-                    R.drawable.av6);
-            if (avRsc != -1) {
-                imageView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), imageViews.get(avRsc), null));
-            }
+
+    private void setAvatar(ImageView imageView) {
+        int avRsc = dataManager.getSharedPrefs().getInt(DataManager.USER_AVATAR, -1);
+        List<Integer> imageViews = Arrays.asList(
+                R.drawable.av1,
+                R.drawable.av2,
+                R.drawable.av3,
+                R.drawable.av4,
+                R.drawable.av5,
+                R.drawable.av6);
+        if (avRsc != -1) {
+            imageView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), imageViews.get(avRsc), null));
         }
+    }
 
     public void back(View view) {
         onBackPressed();
     }
 
-    public void style(View view) {
-        Intent intent = new Intent(ParametresActivity.this, com.pg.p_gshar.pti_ps.MainActivity.class);
-        startActivity(intent);
-    }
-
     public void profil(View view) {
-        Intent intent = new Intent(ParametresActivity.this, com.pg.p_gshar.pti_ps.AvatarActivity.class);
+        Intent intent = new Intent(SettingsActivity.this, AvatarActivity.class);
         startActivity(intent);
     }
 
     public void privacy(View view) {
-        Intent intent = new Intent(ParametresActivity.this, Privacy.class);
+        Intent intent = new Intent(SettingsActivity.this, Privacy.class);
         startActivity(intent);
     }
 
     public void support(View view) {
-        Intent intent = new Intent(ParametresActivity.this, Contact.class);
+        Intent intent = new Intent(SettingsActivity.this, Contact.class);
         startActivity(intent);
     }
 
     public void about(View view) {
-        Intent intent = new Intent(ParametresActivity.this, About.class);
+        Intent intent = new Intent(SettingsActivity.this, About.class);
         startActivity(intent);
     }
 }
