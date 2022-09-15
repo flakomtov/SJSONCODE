@@ -222,7 +222,7 @@ public class AdScreenActivity extends AppCompatActivity implements MaxRewardedAd
 
                 player.addMediaItem(MediaItem.fromUri("file:///android_asset/video.mp4"));
                 player.prepare();
-                player.setPlayWhenReady(true);
+                player.setPlayWhenReady(false);
             }
 
             // set blurry background
@@ -258,6 +258,7 @@ public class AdScreenActivity extends AppCompatActivity implements MaxRewardedAd
                 contentContainer.addView(generateRandomDescription(false));
                 contentContainer.bringChildToFront(carousel);
                 contentContainer.addView(nextBtn);
+                contentContainer.addView(adView);
             } else if (currentAdScreen.getCarousel()==null && !currentAdScreen.isVideo()) {
                 if (currentIndex<=2) {
                     // page 2 in Sketch
