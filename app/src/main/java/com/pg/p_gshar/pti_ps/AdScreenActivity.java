@@ -255,19 +255,19 @@ public class AdScreenActivity extends AppCompatActivity implements MaxRewardedAd
             // handle dispositions
             if (currentAdScreen.getCarousel()!=null && !currentAdScreen.getCarousel().isAdvancedView()) {
                 // page 1 in Sketch
-                contentContainer.addView(generateRandomDescription(false));
+                contentContainer.addView(getDescriptionForScreen());
                 contentContainer.bringChildToFront(carousel);
                 contentContainer.addView(nextBtn);
                 contentContainer.addView(adView);
             } else if (currentAdScreen.getCarousel()==null && !currentAdScreen.isVideo()) {
                 if (currentIndex<=2) {
                     // page 2 in Sketch
-                    contentContainer.addView(generateRandomDescription(false));
+                    contentContainer.addView(getDescriptionForScreen());
                     contentContainer.addView(adView);
                     contentContainer.addView(nextBtn);
                 }else {
                     // pages 4 & 6 in Sketch
-                    contentContainer.addView(generateRandomDescription(true));
+                    contentContainer.addView(getDescriptionForScreen());
                     contentContainer.addView(nextBtn);
                     contentContainer.addView(adView);
                 }
@@ -276,24 +276,33 @@ public class AdScreenActivity extends AppCompatActivity implements MaxRewardedAd
                 contentContainer.addView(playerView);
                 contentContainer.addView(adView);
                 contentContainer.addView(nextBtn);
-                contentContainer.addView(generateRandomDescription(false));
+                contentContainer.addView(getDescriptionForScreen());
             } else if (currentAdScreen.getCarousel()!=null && currentAdScreen.getCarousel().isAdvancedView()) {
                 // page 5 in Sketch
                 contentContainer.bringChildToFront(carousel);
-                contentContainer.addView(generateRandomDescription(false));
+                contentContainer.addView(getDescriptionForScreen());
                 contentContainer.addView(adView);
                 contentContainer.addView(nextBtn);
-                contentContainer.addView(generateRandomDescription(true));
+                contentContainer.addView(getDescriptionForScreen(true));
             }
         }
     }
 
-    private TextView generateRandomDescription(boolean useSecond) {
+    private TextView getDescriptionForScreen() {
+        return getDescriptionForScreen(false);
+    }
+
+    private TextView getDescriptionForScreen(boolean useFallback) {
+        int resId = getResources().getIdentifier("screenDescription_" + currentIndex,
+                "string", this.getPackageName());
+
+        if (resId <= 0 || useFallback) {
+            resId = getResources().getIdentifier("fallbackDescription",
+                    "string", this.getPackageName());
+        }
+
         TextView description = new TextView(this, null, R.style.Theme_AppUnlocker);
-        description.setText(
-                useSecond ?
-                        getResources().getString(R.string.genericDescription2)
-                        : getResources().getString(R.string.genericDescription));
+        description.setText(getResources().getString(resId));
         description.setTextSize(16);
         description.setTextColor(masterTextColor);
         description.setPadding(0, 30, 0, 30);
@@ -503,7 +512,8 @@ public class AdScreenActivity extends AppCompatActivity implements MaxRewardedAd
 
     private void enableNavigationBtns() {
         adsProcessed++;
-        if (adsProcessed > 1) {
+        if (adsProcessed > 1
+                || ("applovin".equalsIgnoreCase(dataManager.getAdsData().getDefaultProvider()))) {
             findViewById(R.id.progressBar).setVisibility(View.GONE);
 
             nextBtn.setVisibility(View.VISIBLE);
@@ -586,7 +596,7 @@ public class AdScreenActivity extends AppCompatActivity implements MaxRewardedAd
     @Override
     public void onAdLoaded(final MaxAd maxAd) {
         // Rewarded ad is ready to be shown. rewardedAd.isReady() will now return 'true'
-
+        enableNavigationBtns();
         // Reset retry attempt
         retryAttempt = 0;
     }
@@ -598,7 +608,7 @@ public class AdScreenActivity extends AppCompatActivity implements MaxRewardedAd
 
         retryAttempt++;
         long delayMillis = TimeUnit.SECONDS.toMillis((long) Math.pow(2, Math.min(6, retryAttempt)));
-
+        enableNavigationBtns();
         new Handler().postDelayed(() -> rewardedAd.loadAd(), delayMillis);
     }
 

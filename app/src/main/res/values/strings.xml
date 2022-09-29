@@ -15,8 +15,14 @@
 
     <string name="about">Version 1.0</string>
 
-    <string name="genericDescription">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</string>
-    <string name="genericDescription2">Lorem Lipsum that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</string>
+    <string name="fallbackDescription">FALLBACK - It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</string>
+
+    <string name="screenDescription_1">1 - It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</string>
+    <string name="screenDescription_2">2 - Lorem Lipsum that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</string>
+    <string name="screenDescription_3">3 - It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</string>
+    <string name="screenDescription_4">4 - Lorem Lipsum that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</string>
+    <string name="screenDescription_5">5 - It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</string>
+    <string name="screenDescription_6">6 - Lorem Lipsum that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</string>
 
     <string name="networkError">There was an issue with network, make sure you\'re connected to Internet and try again</string>
     <string name="jsonError">There was an issue parsing data, make sure you\'re connected to Internet and try again</string>
